@@ -171,3 +171,9 @@ cython_debug/
 .pypirc
 .env.py
 .env
+venv/
+__pycache__/
+*.log
+*.wav
+*.mp4
+.env
