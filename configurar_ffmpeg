@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Script para configurar o FFmpeg no macOS
+
+# Atualizar Homebrew
+brew update
+
+# Instalar FFmpeg
+brew install ffmpeg
+
+# Verificar a instalação do FFmpeg
+ffmpeg -version
+
+echo "FFmpeg foi instalado e configurado com sucesso."

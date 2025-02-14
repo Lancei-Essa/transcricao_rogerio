@@ -1,0 +1,100 @@
++ FFMPEG_DOWNLOAD_URL=https://ffmpeg.org/download.html
++ REQUIRED_PYTHON=3.10
++ PYTHON_EXEC=python3
++ INSTALL_WHISPER=true
++ INSTALL_FFMPEG=true
++ rustup target add aarch64-apple-darwin
+info: component 'rust-std' for target 'aarch64-apple-darwin' is up to date
++ export CARGO_BUILD_TARGET=aarch64-apple-darwin
++ CARGO_BUILD_TARGET=aarch64-apple-darwin
++ export 'RUSTFLAGS=-C target-cpu=native'
++ RUSTFLAGS='-C target-cpu=native'
++ custom_log 'Atualizando pip globalmente...'
++ local LEVEL=INFO
+++ date '+%Y-%m-%d %H:%M:%S'
++ echo '[2025-02-10 18:07:59] [INFO] Atualizando pip globalmente...'
++ python3 -m pip install --upgrade pip
++ custom_log '✔ pip global atualizado com sucesso.'
++ local LEVEL=INFO
+++ date '+%Y-%m-%d %H:%M:%S'
++ echo '[2025-02-10 18:08:02] [INFO] ✔ pip global atualizado com sucesso.'
++ custom_log 'Verificando suporte do Python para '\''venv'\''...'
++ local LEVEL=INFO
+++ date '+%Y-%m-%d %H:%M:%S'
++ echo '[2025-02-10 18:08:02] [INFO] Verificando suporte do Python para '\''venv'\''...'
++ python3 -m ensurepip
++ custom_log '✔ Python suporta '\''venv'\''.'
++ local LEVEL=INFO
+++ date '+%Y-%m-%d %H:%M:%S'
++ echo '[2025-02-10 18:08:04] [INFO] ✔ Python suporta '\''venv'\''.'
++ trap rollback ERR
++ custom_log 'Limpando logs antigos...' INFO
++ local LEVEL=INFO
+++ date '+%Y-%m-%d %H:%M:%S'
++ echo '[2025-02-10 18:08:04] [INFO] Limpando logs antigos...'
++ find logs -type f -mtime +30 -exec rm -f '{}' ';'
++ custom_log 'Compactando logs antigos...' INFO
++ local LEVEL=INFO
+++ date '+%Y-%m-%d %H:%M:%S'
++ echo '[2025-02-10 18:08:04] [INFO] Compactando logs antigos...'
++ find logs -type f -mtime +30 -exec gzip '{}' ';'
++ custom_log '✔ Logs antigos compactados com sucesso.' INFO
++ local LEVEL=INFO
+++ date '+%Y-%m-%d %H:%M:%S'
++ echo '[2025-02-10 18:08:04] [INFO] ✔ Logs antigos compactados com sucesso.'
++ check_internet
++ custom_log 'Verificando conexão com a internet...'
++ local LEVEL=INFO
+++ date '+%Y-%m-%d %H:%M:%S'
++ echo '[2025-02-10 18:08:04] [INFO] Verificando conexão com a internet...'
++ ping -c 1 -W 2 8.8.8.8
++ custom_log '✔ Conexão com a internet confirmada.'
++ local LEVEL=INFO
+++ date '+%Y-%m-%d %H:%M:%S'
++ echo '[2025-02-10 18:08:04] [INFO] ✔ Conexão com a internet confirmada.'
++ install_rust
++ custom_log 'Verificando instalação do Rust...'
++ local LEVEL=INFO
+++ date '+%Y-%m-%d %H:%M:%S'
++ echo '[2025-02-10 18:08:04] [INFO] Verificando instalação do Rust...'
++ command -v rustup
++ custom_log '✔ Rustup já está instalado.'
++ local LEVEL=INFO
+++ date '+%Y-%m-%d %H:%M:%S'
++ echo '[2025-02-10 18:08:04] [INFO] ✔ Rustup já está instalado.'
++ command -v cargo
++ custom_log 'Atualizando Rust para a versão mais recente...' INFO
++ local LEVEL=INFO
+++ date '+%Y-%m-%d %H:%M:%S'
++ echo '[2025-02-10 18:08:04] [INFO] Atualizando Rust para a versão mais recente...'
++ rustup update stable
+info: syncing channel updates for 'stable-aarch64-apple-darwin'
+info: checking for self-update
++ rustup --version
++ custom_log '✔ Rust configurado corretamente.' INFO
++ local LEVEL=INFO
+++ date '+%Y-%m-%d %H:%M:%S'
++ echo '[2025-02-10 18:08:07] [INFO] ✔ Rust configurado corretamente.'
++ [[ darwin24 == \d\a\r\w\i\n* ]]
++ xcode-select --install
+xcode-select: note: Command line tools are already installed. Use "Software Update" in System Settings or the softwareupdate command line interface to install updates
++ true
++ command -v python3
+++ python3 --version
+++ awk '{print $2}'
++ CURRENT_PYTHON=3.13.1
+++ echo -e '3.10\n3.13.1'
+++ sort -V
+++ head -n1
++ [[ 3.10 != \3\.\1\0 ]]
+++ pwd
++ '[' '!' -w /Users/rogerioresende/Desktop/Transcricao_Podcast/transcricao_podcast ']'
++ source env_utils.sh
++ '[' '!' -f requirements.txt ']'
++ custom_log 'Arquivo requirements.txt não encontrado. Por favor, adicione-o antes de prosseguir.' ERROR
++ local LEVEL=ERROR
+++ date '+%Y-%m-%d %H:%M:%S'
++ echo '[2025-02-10 18:08:07] [ERROR] Arquivo requirements.txt não encontrado. Por favor, adicione-o antes de prosseguir.'
++ exit 1
++ deactivate
++ true

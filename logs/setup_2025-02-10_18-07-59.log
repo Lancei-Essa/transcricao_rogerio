@@ -1,0 +1,28 @@
+[2025-02-10 18:07:59] [INFO] Atualizando pip globalmente...
+Requirement already satisfied: pip in /Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages (25.0)
+Collecting pip
+  Downloading pip-25.0.1-py3-none-any.whl.metadata (3.7 kB)
+Downloading pip-25.0.1-py3-none-any.whl (1.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 17.8 MB/s eta 0:00:00
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 25.0
+    Uninstalling pip-25.0:
+      Successfully uninstalled pip-25.0
+Successfully installed pip-25.0.1
+[2025-02-10 18:08:02] [INFO] ✔ pip global atualizado com sucesso.
+[2025-02-10 18:08:02] [INFO] Verificando suporte do Python para 'venv'...
+[2025-02-10 18:08:04] [INFO] ✔ Python suporta 'venv'.
+[2025-02-10 18:08:04] [INFO] Limpando logs antigos...
+[2025-02-10 18:08:04] [INFO] Compactando logs antigos...
+[2025-02-10 18:08:04] [INFO] ✔ Logs antigos compactados com sucesso.
+[2025-02-10 18:08:04] [INFO] Verificando conexão com a internet...
+[2025-02-10 18:08:04] [INFO] ✔ Conexão com a internet confirmada.
+[2025-02-10 18:08:04] [INFO] Verificando instalação do Rust...
+[2025-02-10 18:08:04] [INFO] ✔ Rustup já está instalado.
+[2025-02-10 18:08:04] [INFO] Atualizando Rust para a versão mais recente...
+
+  stable-aarch64-apple-darwin unchanged - rustc 1.84.1 (e71f9a9a9 2025-01-27)
+
+[2025-02-10 18:08:07] [INFO] ✔ Rust configurado corretamente.
+[2025-02-10 18:08:07] [ERROR] Arquivo requirements.txt não encontrado. Por favor, adicione-o antes de prosseguir.

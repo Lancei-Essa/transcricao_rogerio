@@ -1,0 +1,13 @@
+import unittest
+
+def executar_testes():
+    # Descobre e carrega todos os testes no diretório atual
+    loader = unittest.TestLoader()
+    suite = loader.discover(start_dir='.', pattern='test_*.py')
+
+    # Executa os testes
+    runner = unittest.TextTestRunner()
+    runner.run(suite)
+
+if __name__ == '__main__':
+    executar_testes()
