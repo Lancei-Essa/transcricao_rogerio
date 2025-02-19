@@ -51,7 +51,10 @@ def transcrever_audio(caminho_audio):
 
         logger.debug(f"📄 Transcrição salva em: {caminho_txt}")
 
-        return segmentos_transcricao  # Retorna os segmentos ao invés de apenas um bloco de texto
+        # Converte segmentos para string, mantendo timestamps
+        texto_transcricao = "\n".join([f"[{start:.2f} - {end:.2f}] {text}" for start, end, text in segmentos_transcricao])
+
+        return caminho_txt, texto_transcricao  # Retorna a transcrição formatada como string
 
     except KeyboardInterrupt:
         progresso.close()

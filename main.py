@@ -1,4 +1,5 @@
 import os
+import subprocess
 
 # Forçar as bibliotecas a operarem em modo offline
 os.environ['HF_HUB_OFFLINE'] = '1'
@@ -9,6 +10,12 @@ from transcricao.transcrever import transcrever_audio
 from transcricao.salvar_transcricao import salvar_transcricao
 from transcricao.diarizar import diarizar_audio
 from transcricao.sincronizar_transcricao import sincronizar_diarizacao_com_transcricao
+
+def extrair_audio(video_path):
+    """Extrai o áudio do vídeo usando ffmpeg."""
+    audio_path = os.path.splitext(video_path)[0] + ".wav"
+    subprocess.run(["ffmpeg", "-i", video_path, "-q:a", "0", "-map", "0:a:0", "-ac", "1", "-ar", "16000", "-y", audio_path])
+    return audio_path
 
 def main():
     """Fluxo principal do programa."""
@@ -26,11 +33,21 @@ def main():
     segmentos_diarizacao = diarizar_audio(caminho_audio)
 
     print("🎙️ Transcrevendo o áudio...")
-    caminho_transcricao, texto_transcricao = transcrever_audio(caminho_audio)  # Captura ambos os valores
+    resultado = transcrever_audio(caminho_audio)
+
+    if isinstance(resultado, tuple) and len(resultado) == 2:
+        caminho_transcricao, texto_transcricao = resultado
+    else:
+        print("❌ Erro: `transcrever_audio` retornou um valor inesperado:", resultado)
+        return
 
     if not texto_transcricao:
         print("❌ Erro na transcrição. O texto retornado está vazio.")
         return
+
+    # Inspecionar o formato da variável texto_transcricao
+    print(f"Texto transcrito (tipo): {type(texto_transcricao)}")
+    print(f"Primeiros elementos: {texto_transcricao[:5]}")  # Mostra os primeiros elementos
 
     print("📝 Formatando a transcrição...")
     transcricao_formatada = sincronizar_diarizacao_com_transcricao(segmentos_diarizacao, texto_transcricao)
