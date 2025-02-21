@@ -1,5 +1,6 @@
 import re
 import logging
+from transcricao.formatar_tempo import formatar_tempo
 
 def configurar_logs():
     logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
@@ -62,7 +63,9 @@ def sincronizar_diarizacao_com_transcricao(segmentos, texto_transcrito):
                 break  # Sai do loop se passar do tempo do segmento atual
 
         if trecho_falante:
-            transcricao_por_falante.append(f"\n[{inicio_d:.2f} - {fim_d:.2f}] {falante}:\n" + "\n".join(trecho_falante) + "\n")
+            inicio_formatado = formatar_tempo(inicio_d)
+            fim_formatado = formatar_tempo(fim_d)
+            transcricao_por_falante.append(f"\n[{inicio_formatado} --> {fim_formatado}] {falante}:\n" + "\n".join(trecho_falante) + "\n")
 
     transcricao_formatada = "\n".join(transcricao_por_falante).strip()
 

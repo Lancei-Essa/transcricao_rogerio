@@ -10,6 +10,7 @@ from transcricao.transcrever import transcrever_audio
 from transcricao.salvar_transcricao import salvar_transcricao
 from transcricao.diarizar import diarizar_audio
 from transcricao.sincronizar_transcricao import sincronizar_diarizacao_com_transcricao
+from transcricao.identificar_nomes import identificar_nomes
 
 def extrair_audio(video_path):
     """Extrai o áudio do vídeo usando ffmpeg."""
@@ -51,6 +52,9 @@ def main():
 
     print("📝 Formatando a transcrição...")
     transcricao_formatada = sincronizar_diarizacao_com_transcricao(segmentos_diarizacao, texto_transcricao)
+
+    print("🔍 Identificando nomes dos falantes...")
+    transcricao_formatada = identificar_nomes(transcricao_formatada)
 
     print("💾 Salvando transcrição formatada...")
     salvar_transcricao(caminho_audio, transcricao_formatada)
